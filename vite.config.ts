@@ -11,7 +11,7 @@ const proxy = {
     target: "https://uhotelzkk.liontravel.com",
     secure: true,
     changeOrigin: true,
-    rewrite: (path) => path.replace("/uhotelzkk", ""),
+    rewrite: (path: string) => path.replace("/uhotelzkk", ""),
   },
 };
 
