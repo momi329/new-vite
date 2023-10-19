@@ -1,0 +1,6 @@
+@import url("../../global.css");
+
+/* 裡面一定要放東西才會打包到正確位置上喔! */
+.placeholder {
+  @apply text-blue-100;
+}

@@ -1,0 +1,63 @@
+{
+  "root": true,
+  "ignorePatterns": ["**/*"],
+  "plugins": ["@nx", "import"],
+  "parserOptions": {
+    "project": [
+      "apps/*/tsconfig.app.json",
+      "libs/*/**/tsconfig.json",
+      "tsconfig.base.json"
+    ]
+  },
+  "settings": {
+    "import/resolver": {
+      "typescript": {
+        "alwaysTryTypes": true,
+        "project": [
+          "apps/*/tsconfig.json",
+          "libs/*/**/tsconfig.json",
+          "tsconfig.base.json"
+        ]
+      }
+    }
+  },
+  "overrides": [
+    {
+      "files": ["*.ts", "*.tsx", "*.js", "*.jsx"],
+      "extends": ["haku"],
+      "rules": {
+        "import/no-extraneous-dependencies": "off",
+        "@nx/enforce-module-boundaries": [
+          "error",
+          {
+            "enforceBuildableLibDependency": true,
+            "allow": [],
+            "depConstraints": [
+              {
+                "sourceTag": "*",
+                "onlyDependOnLibsWithTags": ["*"]
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "files": ["*.ts", "*.tsx"],
+      "extends": ["plugin:@nx/typescript"],
+      "rules": {}
+    },
+    {
+      "files": ["*.js", "*.jsx"],
+      "extends": ["plugin:@nx/javascript"],
+      "rules": {}
+    },
+    {
+      "files": ["*.tsx", "*.jsx"],
+      "extends": ["plugin:@nx/react", "haku/react"],
+      "rules": {
+        "react/require-default-props": "off"
+      }
+    }
+  ]
+}
